@@ -1,14 +1,60 @@
 <script lang="ts">
-    const x= "hi varinder"
+    import {APP_NAME, PRIMARY_COLOR} from '$lib/configs/constants'
+    import {goto} from "$app/navigation"
+
+    var username = $state('')
+
+    const handleSubmit = () => {
+        console.log(username)
+        goto("/habits")
+    }
 </script>
 
-<div>
-    {x}
+<div class="page">
+    <form 
+        class="w-full" 
+        on:submit|preventDefault={handleSubmit}
+    >
+        <h1
+            class="mb-16 font-medium text-3xl"
+        > 
+            Welcome to <span class={`text-${PRIMARY_COLOR}-600`} >{APP_NAME}</span>
+        </h1>
+        <div class="details">
+            <input 
+                name="username"
+                type="text"
+                id="username"
+                class="mb-4 w-full p-4 rounded-md border-2 border-slate-900"
+                placeholder="Username"
+                bind:value={username}
+            />
+            <button 
+                class="mb-20 p-4 w-full font-semibold rounded-md border bg-slate-900 text-white" 
+                type="submit"
+            >
+              Proceed
+            </button>
+        </div>
+    </form>
 </div>
 
 <style>
-    div {
-        bg-color: green;
+    .page {
+        height: 100svh;
+        width: 100svw;
+        padding: 3em;
+        display: flex;
+        justify-content: center;
+        place-items: end;
+    }
+
+    .details {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        place-items:center;
     }
 
 </style>
