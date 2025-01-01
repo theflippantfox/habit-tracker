@@ -3,7 +3,13 @@
     export let button
 </script>
 
-<button class="button" role="button" on:click={goto(button.link)}>
-    <div class="logo"></div>
+<button class="p-2 w-full font-semibold rounded-md border bg-slate-900 text-white flex items-center" on:click={() => goto(button.link)}>
+    <div class="w-8 h-8 mr-4 flex items-center justify-center"><i class={`lni lni-${button.icon}`}></i></div>
     <div class="text">{button.text}</div>
 </button>
+
+<style>
+    .lni {
+        font-size: 1.5em;
+    }
+</style>

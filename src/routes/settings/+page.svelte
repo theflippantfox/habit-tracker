@@ -2,13 +2,11 @@
     import Button from '$lib/components/settings/Button.svelte'
 
     const buttons = [
-        {logo: '', text: 'general', link: 'settings/general'},
-        {logo: '', text: 'theme', link: 'settings/theme'},
-        {logo: '', text: 'username', link: 'settings/username'},
-        {logo: '', text: 'import', link: 'settings/import'},
-        {logo: '', text: 'export', link: 'settings/general'},
-        {logo: '', text: 'logout', link: 'settings/logout'}
-
+        {icon: 'user-4', text: 'Username', link: 'settings/username'},
+        {icon: 'globe-1', text: 'General', link: 'settings/general'},
+        {icon: 'brush-2', text: 'Theme', link: 'settings/theme'},
+        {icon: 'file-plus-circle', text: 'Data Import/Export', link: 'settings/data'},
+        {icon: 'exit', text: 'Logout', link: 'settings/logout'}
     ]
 </script>
 
