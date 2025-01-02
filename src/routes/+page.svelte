@@ -6,7 +6,7 @@
 
     const handleSubmit = () => {
         console.log(username)
-        goto("/habits")
+        goto("/home")
     }
 </script>
 
