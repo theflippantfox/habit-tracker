@@ -1,4 +1,4 @@
-import {v4 as uuid} from 'uuid'
+import { v4 as uuid } from 'uuid'
 
 interface Data {
     users: User[]
@@ -9,7 +9,7 @@ interface User {
     habits: Habit[]
 }
 
-export interface Habit {
+interface Habit {
     id?: string
     name: string
     description: string
@@ -20,7 +20,7 @@ export interface Habit {
     color: string
 }
 
-const data:Data = {
+const data: Data = {
     users: []
 }
 
@@ -32,17 +32,17 @@ export const addUser = (username: string) => {
     data.users.push(newuser)
 }
 
-export const addHabit = (username:string, habit:Habit) => {
+export const addHabit = (username: string, habit: Habit) => {
     habit = {
         id: uuid(),
         ...habit
     }
 
-    const useridx = data.users.findIndex((user) => {return user.username === username})
+    const useridx = data.users.findIndex((user) => { return user.username === username })
 
     data.users[useridx].habits.push(habit)
 }
 
-const fetchUser = (username: string):User|undefined => {
-    return data.users.find((user) => {return user.username === username})
+export const fetchUser = (username: string): User | undefined => {
+    return data.users.find((user) => { return user.username === username })
 }
