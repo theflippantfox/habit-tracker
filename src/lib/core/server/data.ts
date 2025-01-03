@@ -9,8 +9,8 @@ interface User {
     habits: Habit[]
 }
 
-interface Habit {
-    id: string
+export interface Habit {
+    id?: string
     name: string
     description: string
     goal: string
@@ -24,7 +24,7 @@ const data:Data = {
     users: []
 }
 
-const addUser = (username: string) => {
+export const addUser = (username: string) => {
     const newuser = {
         username: username,
         habits: []
@@ -32,8 +32,11 @@ const addUser = (username: string) => {
     data.users.push(newuser)
 }
 
-const addHabit = (username:string, habit:Habit) => {
-    habit.id = uuid()
+export const addHabit = (username:string, habit:Habit) => {
+    habit = {
+        id: uuid(),
+        ...habit
+    }
 
     const useridx = data.users.findIndex((user) => {return user.username === username})
 

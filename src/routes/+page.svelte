@@ -1,19 +1,11 @@
 <script lang="ts">
     import {APP_NAME, PRIMARY_COLOR} from '$lib/configs/constants'
-    import {goto} from "$app/navigation"
-
-    var username = $state('')
-
-    const handleSubmit = () => {
-        console.log(username)
-        goto("/home")
-    }
 </script>
 
 <div class="page">
     <form 
-        class="w-full" 
-        on:submit|preventDefault={handleSubmit}
+        class="w-full"
+        method="POST"
     >
         <h1
             class="mb-16 font-medium text-3xl"
@@ -27,7 +19,6 @@
                 id="username"
                 class="mb-4 w-full p-4 rounded-md border-2 border-slate-900"
                 placeholder="Username"
-                bind:value={username}
             />
             <button 
                 class="mb-20 p-4 w-full font-semibold rounded-md border bg-slate-900 text-white" 
