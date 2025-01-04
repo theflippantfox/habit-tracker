@@ -1,7 +1,8 @@
 <script lang="ts">
+	let { children } = $props();
 </script>
 
-<slot />
+{@render children()}
 
 <div class="absolute bottom-0 flex w-full justify-around bg-slate-900 p-4 text-white">
 	<a
@@ -26,4 +27,3 @@
 		<i class="lni lni-dashboard-square-1"></i>
 	</a>
 </div>
-
