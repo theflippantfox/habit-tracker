@@ -1,13 +1,48 @@
-import { addUser } from '$lib/core/server/data'
 import { redirect, type Actions } from '@sveltejs/kit'
+import { supabase } from '$lib/server/supabase'
 
 export const actions: Actions = {
-    default: async ({ request, cookies }) => {
-        const { username } = Object.fromEntries(await request.formData())
+    signin: async ({ request, cookies }) => {
+        const { email, password } = Object.fromEntries(await request.formData())
 
-        addUser(String(username))
-        cookies.set('username', String(username), { path: '/' })
+        const { data, error } = await supabase.auth.signInWithPassword({
+            email: String(email),
+            password: String(password)
+        })
 
-        throw redirect(303, '/home')
+        if (data.user) {
+            console.log(data.user, data.session)
+            cookies.set('email', String(data.user.email), { path: '/' })
+
+            throw redirect(303, '/home')
+        }
+
+        else {
+            return {
+                error
+            }
+        }
+    },
+
+    signup: async ({ request, cookies }) => {
+        const { email, password } = Object.fromEntries(await request.formData())
+
+        const { data, error } = await supabase.auth.signUp({
+            email: String(email),
+            password: String(password)
+        })
+
+        if (data.user) {
+            console.log(data.user, data.session)
+            cookies.set('email', String(data.user.email), { path: '/' })
+
+            throw redirect(303, '/home')
+        }
+
+        else {
+            return {
+                error
+            }
+        }
     }
 }
